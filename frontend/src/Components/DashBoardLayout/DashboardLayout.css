@@ -1,0 +1,32 @@
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+  }
+ 
+  
+  /* .sidebar-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-links li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  
+  .sidebar-links li a:hover {
+    color: #007bff;
+  } */
+
+  

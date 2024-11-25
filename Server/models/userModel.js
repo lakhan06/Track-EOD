@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
     name: { type: String }, // Only for companies
     industry: { type: String }, // Only for companies
     logo: { type: String }, // Optional logo
+    address:{type: String} 
   },
   employeeDetails: {
     companyId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Links to the company

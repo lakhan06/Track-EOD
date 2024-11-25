@@ -17,18 +17,18 @@ const createTask = async (req, res) => {
     const task = new Task({ name, description, companyId, assignees, deadline });
     await task.save();
 
-    // Notify all assigned employees
-    await Promise.all(
-      assignees.map((employeeId) =>
-        sendNotification(
-          employeeId,
-          `You have been assigned a new task: "${name}".`,
-          { taskId: task._id, companyId }
-        )
-      )
-    );
+    // // Notify all assigned employees
+    // await Promise.all(
+    //   assignees.map((employeeId) =>
+    //     sendNotification(
+    //       employeeId,
+    //       `You have been assigned a new task: "${name}".`,
+    //       { taskId: task._id, companyId }
+    //     )
+    //   )
+    // );
 
-    res.status(201).json({ message: "Task created successfully", task });
+    res.status(201).json({ message: "Task created successfully",data:task });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -40,7 +40,7 @@ const getTasksForCompany = async (req, res) => {
 
   try {
     const tasks = await Task.find({ companyId }).populate("assignees", "username email");
-    res.status(200).json(tasks);
+    res.status(200).json({message:"data fetches",data:tasks});
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -112,13 +112,13 @@ const deleteTask = async (req, res) => {
 
   try {
     // Find the task
-    const task = await Task.findById(taskId);
+    const task = await Task.findByIdAndDelete(taskId);
     if (!task) return res.status(404).json({ message: "Task not found" });
 
     const assignees = task.assignees;
 
     // Delete the task
-    await task.remove();
+   
 
     // Notify all assignees about the deletion
     await Promise.all(

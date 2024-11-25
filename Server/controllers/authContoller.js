@@ -17,6 +17,7 @@ const registerUserOrCompany = async (req, res) => {
 
     // Prepare user data based on role
     const userData = {
+      username,
       email,
       password,
       role,
