@@ -4,7 +4,8 @@ const User = require("../models/userModel");
 const { sendNotification } = require("../utils/notification");
 
 const submitEod = async (req, res) => {
-  const { employeeId, companyId, workDescription, mediaFiles } = req.body;
+  const {   workDescription, mediaFiles } = req.body;
+  const employeeId=req.user.id
 
   try {
     // Find the user
@@ -41,7 +42,6 @@ const submitEod = async (req, res) => {
     // Create a new EOD entry
     const eod = new EodEntry({
       employeeId,
-      companyId,
       workDescription,
       mediaFiles,
     });
@@ -49,7 +49,7 @@ const submitEod = async (req, res) => {
 
     // Notify the company
     await sendNotification(
-      companyId,
+      user.employeeDetails.companyId,
       `EOD submitted by ${user.username}: "${workDescription}"`,
       { eodId: eod._id, employeeId }
     );

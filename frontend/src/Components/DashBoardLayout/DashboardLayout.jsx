@@ -28,7 +28,7 @@ const DashboardLayout = () => {
           ) : (
             <>
               <li>
-                <Link to="/eod/add">Add EOD</Link>
+                <Link to="/createEod">Add EOD</Link>
               </li>
               <li>
                 <Link to="/">See Leaderboard</Link>

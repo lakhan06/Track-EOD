@@ -8,6 +8,7 @@ import Tasks from "./pages/Tasks/Task";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Profile from "./pages/Profilepage/ProfilePage";
 import Navbar from "./Components/Navbar/Navbar"
+import AddEod from "./pages/EOd/EOD";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="/tasks" element={<Tasks />} />
+            <Route path="/createEod" element={<AddEod />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/login" element={<Login />} />
