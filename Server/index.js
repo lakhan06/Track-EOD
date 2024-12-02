@@ -42,8 +42,6 @@ app.use("/api/companies", require("./routes/companyRoutes"));
 
 
 //test Route
-
-
 app.get("/" , (req , res)=>{
   return res.status(200).json({
     success:true,
