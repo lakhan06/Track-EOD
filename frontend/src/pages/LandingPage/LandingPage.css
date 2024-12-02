@@ -14,10 +14,11 @@ body {
       /* padding: 2rem; */
       padding:80px 100px;
     background: #f4f5f7;
-    height: 100vh;
+    max-height: 100vh;
     flex-wrap: wrap;
     /* gap: 50px; */
     overflow: hidden;
+    /* padding-bottom: 0; */
   }
   
   .hero-content {
@@ -33,6 +34,7 @@ body {
   }
   
   .hero-content h1 {
+    width: fit-content;
     color: #27ae60;
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -45,6 +47,9 @@ body {
   .hero-buttons{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-content: ;
+    gap: 10px;
   }
   
   .hero-buttons .btn-primary {
