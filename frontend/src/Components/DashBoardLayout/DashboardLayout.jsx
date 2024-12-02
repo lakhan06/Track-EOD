@@ -33,7 +33,7 @@ const DashboardLayout = () => {
     <div className="dashboard-layout">
       {/* Sidebar */}
       <aside className="dashboard-sidebar">
-        <Link to={'/'}><h3 className="sidebar-title">Dashboard</h3></Link>
+        <Link to={'/dashboard'}><h3 className="sidebar-title">Dashboard</h3></Link>
         <ul className="sidebar-links">
           {user.role === "company" ? (
             <>

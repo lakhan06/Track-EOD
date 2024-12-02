@@ -1,0 +1,86 @@
+.footer {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 2rem 1rem;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-about,
+  .footer-links,
+  .footer-support,
+  .footer-social {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .footer-about h3,
+  .footer-links h4,
+  .footer-support h4,
+  .footer-social h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-about p {
+    line-height: 1.6;
+  }
+  
+  .footer-links ul,
+  .footer-support ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li,
+  .footer-support li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-links li a,
+  .footer-support li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links li a:hover,
+  .footer-support li a:hover {
+    color: #008cba;
+  }
+  
+  .footer-social .social-icons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .footer-social .social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-social .social-icons a:hover {
+    color: #008cba;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    border-top: 1px solid #333;
+    padding-top: 1rem;
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+  

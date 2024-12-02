@@ -16,22 +16,23 @@ import EmployeeDetails from "./pages/EmployeeDetails/EmployeeDetails";
 import EmployeeEods from "./pages/EmployeeDetails/EmployeeEodForCOmpany";
 import ProtectedRoute from "./Components/Proctected ROutes/ProctedRoute";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import Footer from "./Components/Footer/Footer";
 
 const AppRoutes = () => {
   const { user } = useContext(AuthContext);
   const location = useLocation();
 
-  const shouldShowLanding = location.search.includes("view=landing");
+  const isLandingPage = location.pathname === "/" && location.search.includes("view=landing");
 
   return (
     <>
-      { <Navbar />}
+      <Navbar />
       <Routes>
         {/* Landing Page or Redirect to Dashboard */}
         <Route
           path="/"
           element={
-            user && !shouldShowLanding ? <Navigate to="/dashboard" /> : <LandingPage />
+            user && !isLandingPage ? <Navigate to="/dashboard" /> : <LandingPage />
           }
         />
 
@@ -55,6 +56,8 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      {/* Render Footer only on Landing Page */}
+      {isLandingPage && <Footer />}
     </>
   );
 };

@@ -1,0 +1,168 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .landing-page {
+    color: #333;
+  }
+  
+  .hero-section {
+      display: flex;
+      justify-content: space-between;
+      /* align-items: center; */
+      /* padding: 2rem; */
+      padding: 150px 100px;
+    background: #f4f5f7;
+    height: 100vh;
+  }
+  
+  .hero-content {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    gap: 20px;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons .btn-primary {
+    background: #0052cc;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    margin-right: 1rem;
+    text-decoration: none;
+  }
+  
+  .hero-buttons .btn-secondary {
+    background: transparent;
+    border: 2px solid #0052cc;
+    padding: 0.8rem 1.5rem;
+    color: #0052cc;
+    text-decoration: none;
+  }
+  
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .what-we-do {
+    padding: 3rem 2rem;
+    background: #fff;
+    text-align: center;
+  }
+  
+  .what-we-do h2 {
+    margin-bottom: 2rem;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .feature {
+    text-align: center;
+    max-width: 30%;
+    /* color: #0052cc; */
+  }
+  .feature h3{
+    color: #27ae60;
+  }
+  
+  .feature img {
+    width: 400px;
+    margin-bottom: 1rem;
+  }
+  
+  .services {
+    padding: 3rem 2rem;
+    /* background: #f4f5f7; */
+    text-align: center;
+  }
+  
+  .services-grid {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .service {
+    max-width: 30%;
+  }
+  .service h3{
+    color:#27ae60;
+  }
+  
+  .pricing {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: white;
+  }
+  
+  .pricing-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+  }
+  
+  .pricing-plan {
+    border: 1px solid #ddd;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 25%;
+    background: #fff;
+  }
+  .pricing-plan h3{
+    color: #27ae60;
+  }
+  .price-btn{
+    background-color: #27ae60;
+    padding:5px 10px;
+
+  }
+  
+  .premium {
+    background: #f4f5f7;
+    border: 2px solid #0052cc;
+    
+  }
+  
+  .demo-form {
+    padding: 3rem 2rem;
+    /* background: #f4f5f7; */
+  }
+  
+  .demo-form form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
