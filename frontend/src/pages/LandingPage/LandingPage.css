@@ -16,7 +16,7 @@ body {
     background: #f4f5f7;
     height: 100vh;
     flex-wrap: wrap;
-    gap: 50px;
+    /* gap: 50px; */
     overflow: hidden;
   }
   
@@ -28,11 +28,12 @@ body {
     align-items: center;
     /* justify-content: center; */
     /* align-items: center; */
-    gap: 20px;
-    margin-bottom: 100px;
+    gap: 10px;
+    margin-bottom: 20px;
   }
   
   .hero-content h1 {
+    color: #27ae60;
     font-size: 3rem;
     margin-bottom: 1rem;
   }
