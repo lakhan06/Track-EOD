@@ -7,12 +7,18 @@ import "./EmployeeEods.css";
 const EmployeeEods = () => {
   const { employeeId } = useParams(); // Get employeeId from the route params
   const [eods, setEods] = useState([]);
+  const [filteredEods, setFilteredEods] = useState([]); // Filtered EODs
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedEod, setSelectedEod] = useState(null); // For Modal
   const [status, setStatus] = useState(""); // For updating status
   const [feedback, setFeedback] = useState(""); // For updating feedback
   const [updating, setUpdating] = useState(false); // Updating state
+
+  // Filter state
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   useEffect(() => {
     const fetchEods = async () => {
@@ -21,6 +27,7 @@ const EmployeeEods = () => {
         setLoading(true);
         const fetchedEods = await fetchEodsForEmployee(employeeId);
         setEods(fetchedEods);
+        setFilteredEods(fetchedEods); // Initially display all EODs
       } catch (err) {
         console.error("Error fetching EODs:", err.message);
         setError("Failed to fetch EODs. Please try again.");
@@ -31,6 +38,23 @@ const EmployeeEods = () => {
 
     fetchEods();
   }, [employeeId]);
+
+  useEffect(() => {
+    const filtered = eods.filter((eod) => {
+      const submissionDate = new Date(eod.submissionDate);
+      const matchesMonth = selectedMonth
+        ? submissionDate.getMonth() + 1 === parseInt(selectedMonth)
+        : true;
+      const matchesYear = selectedYear
+        ? submissionDate.getFullYear() === parseInt(selectedYear)
+        : true;
+      const matchesStatus = selectedStatus
+        ? eod.status === selectedStatus
+        : true;
+      return matchesMonth && matchesYear && matchesStatus;
+    });
+    setFilteredEods(filtered);
+  }, [selectedMonth, selectedYear, selectedStatus, eods]);
 
   const openModal = (eod) => {
     setSelectedEod(eod);
@@ -80,9 +104,64 @@ const EmployeeEods = () => {
   return (
     <div className="employee-eods-container">
       <h2>Employee's EODs</h2>
-      {eods.length > 0 ? (
+
+      {/* Filter Options */}
+      <div className="filter-container">
+        <div className="filter-row">
+          <label className="filter-label">
+            Select Month:
+            <select
+              className="filter-select"
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+            >
+              <option value="">All Months</option>
+              {Array.from({ length: 12 }, (_, i) => (
+                <option key={i + 1} value={i + 1}>
+                  {new Date(0, i).toLocaleString("default", { month: "long" })}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="filter-label">
+            Select Year:
+            <select
+              className="filter-select"
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(e.target.value)}
+            >
+              <option value="">All Years</option>
+              {Array.from(
+                new Set(eods.map((eod) => new Date(eod.submissionDate).getFullYear()))
+              ).map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="filter-label">
+            Select Status:
+            <select
+              className="filter-select"
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+            >
+              <option value="">All Statuses</option>
+              <option value="Pending">Pending</option>
+              <option value="Reviewed">Reviewed</option>
+              <option value="Approved">Approved</option>
+              <option value="NotApproved">Not Approved</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      {filteredEods.length > 0 ? (
         <ul className="eods-list">
-          {eods.map((eod) => (
+          {filteredEods.map((eod) => (
             <li key={eod._id} className="eod-item">
               <h3 className="eod-title">{eod.eodTitle}</h3>
               <p>
@@ -119,14 +198,13 @@ const EmployeeEods = () => {
                 <ul>
                   {selectedEod.mediaFiles.map((url, index) => (
                     <li key={index}>
-                    {url.endsWith(".mp4") || url.endsWith(".webm") || url.endsWith(".ogg") ? (
-                        <a href={url} target="_blank" rel="noopener noreferrer">
-                        {/* Video {index+1} */}
+                      {url.endsWith(".mp4") ||
+                      url.endsWith(".webm") ||
+                      url.endsWith(".ogg") ? (
                         <video controls>
                           <source src={url} type="video/mp4" />
                           Your browser does not support the video tag.
                         </video>
-                        </a>
                       ) : (
                         <a href={url} target="_blank" rel="noopener noreferrer">
                           <img src={url} alt={`Attachment ${index + 1}`} />
