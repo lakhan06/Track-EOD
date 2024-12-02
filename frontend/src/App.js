@@ -23,6 +23,7 @@ const AppRoutes = () => {
   const location = useLocation();
 
   const isLandingPage = location.pathname === "/" && location.search.includes("view=landing");
+  const isDashboardPage = location.pathname === "/dashboard" 
 
   return (
     <>
@@ -57,7 +58,7 @@ const AppRoutes = () => {
         <Route path="/register" element={<Register />} />
       </Routes>
       {/* Render Footer only on Landing Page */}
-      {(isLandingPage || location.pathname === "/") && <Footer />}
+      {!isDashboardPage && <Footer />}
     </>
   );
 };
