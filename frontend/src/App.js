@@ -57,7 +57,7 @@ const AppRoutes = () => {
         <Route path="/register" element={<Register />} />
       </Routes>
       {/* Render Footer only on Landing Page */}
-      {isLandingPage && <Footer />}
+      {(isLandingPage || location.pathname === "/") && <Footer />}
     </>
   );
 };
