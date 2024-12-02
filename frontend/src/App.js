@@ -9,6 +9,11 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Profile from "./pages/Profilepage/ProfilePage";
 import Navbar from "./Components/Navbar/Navbar"
 import AddEod from "./pages/EOd/EOD";
+import EmployeeTasks from "./pages/Tasks/EmPloyeeTask";
+import UserEods from "./pages/EOd/UserEODs";
+import Notifications from "./Components/Notifications/Notification";
+import EmployeeDetails from "./pages/EmployeeDetails/EmployeeDetails";
+import EmployeeEods from "./pages/EmployeeDetails/EmployeeEodForCOmpany";
 
 const App = () => {
   return (
@@ -19,6 +24,12 @@ const App = () => {
           <Route path="/" element={<DashboardLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="/tasks" element={<Tasks />} />
+            <Route path="/Employeetasks" element={<EmployeeTasks />} />
+            <Route path="/employee/eods" element={<UserEods />} />
+            <Route path="/employeeDetails" element={<EmployeeDetails />} />
+            <Route path="/company/employeeEods/:employeeId" element={<EmployeeEods />} />
+            <Route path="/notifications" element={<Notifications />} />
+
             <Route path="/createEod" element={<AddEod />} />
             <Route path="/profile" element={<Profile />} />
           </Route>

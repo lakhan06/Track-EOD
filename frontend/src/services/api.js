@@ -2,7 +2,8 @@ import axios from "axios";
 
 // Create Axios instance
 const API = axios.create({
-  baseURL: "http://localhost:8000/api", // Replace with your backend URL
+  baseURL: "https://track-eod-backend.codewithabhinav.online/api", // Replace with your backend URL
+  // baseURL: "http://localhost:8000/api", // Replace with your backend URL
 });
 
 // Request Interceptor: Add token to headers
@@ -47,12 +48,12 @@ export const fetchTasksForCompany = async (companyId) => {
   }
 };
 
-export const fetchTasksForEmployee = async (employeeId) => {
+export const fetchTasksForEmployee = async () => {
   try {
-    const { data } = await API.get(`/task/employee/${employeeId}`);
+    const { data } = await API.get(`/task/employee`);
     return data || [];
   } catch (error) {
-    console.error(`Error fetching tasks for employee ${employeeId}:`, error);
+    console.error(`Error fetching tasks for employee :`, error);
     throw error;
   }
 };
@@ -81,15 +82,35 @@ export const fetchEodsForEmployee = async (employeeId) => {
     throw error;
   }
 };
-export const updateEod = (eodId, data) => API.patch(`/eod/${eodId}`, data);
-
-// Notification APIs
-export const fetchNotifications = async (userId) => {
+export const fetchEodsForUser = async () => {
   try {
-    const { data } = await API.get(`/notifications/${userId}`);
+    const { data } = await API.get(`/eod/employee`);
     return data || [];
   } catch (error) {
-    console.error(`Error fetching notifications for user ${userId}:`, error);
+    console.error(`Error fetching your EODs:`, error);
+    throw error;
+  }
+};
+export const updateEod = (eodId, data) => API.patch(`/eod/${eodId}`, data);
+
+// New API for updating EOD feedback and status
+export const updateEodFeedbackAndStatus = async (eodId, data) => {
+  try {
+    const response = await API.put(`/eod/${eodId}`, data);
+    return response.data || {};
+  } catch (error) {
+    console.error("Error updating EOD feedback and status:", error);
+    throw error;
+  }
+};
+
+// Notification APIs
+export const fetchNotifications = async () => {
+  try {
+    const { data } = await API.get(`/notifications`);
+    return data || [];
+  } catch (error) {
+    console.error(`Error fetching notifications for you:`, error);
     throw error;
   }
 };
@@ -106,8 +127,8 @@ export const fetchCompanies = async () => {
     throw error;
   }
 };
-export const fetchEmployeesForCompany = (companyId) =>
-  API.get(`/companies/employees/${companyId}`);
+export const fetchEmployeesForCompany = () =>
+  API.get(`/companies/employees`);
 
 // User APIs
 export const fetchUserData = async () => {

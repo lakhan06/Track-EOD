@@ -1,0 +1,113 @@
+.notifications-container {
+    /* font-family: Arial, sans-serif; */
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .notifications-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .notifications-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .notification-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .notification-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .notification-item h4 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    color: #007bff;
+  }
+  
+  .notification-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .notification-date {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  .mark-as-read-button {
+    width: fit-content;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .mark-as-read-button:hover {
+    background-color: #218838;
+  }
+  
+  .notifications-loading,
+  .notifications-error {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  
+  .notifications-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .notification-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .unread-notifications .notification-item {
+    background-color: #fff3cd; /* Highlight unread notifications */
+  }
+  
+  .notification-date {
+    font-size: 0.85em;
+    color: #666;
+  }
+  
+  .mark-as-read-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .mark-as-read-button:hover {
+    background-color: #218838;
+  }
+  

@@ -33,13 +33,13 @@ const getCompanies = async (req, res) => {
 
 const fetchEmployeesForCompany = async (req, res) => {
   try {
-    const companyId = req.params.companyId;
+    const companyId = req.user.id;
 
     // Fetch employees associated with the company
     const employees = await User.find({
       role: "employee",
       "employeeDetails.companyId": companyId,
-    }).select("_id username email"); // Select specific fields
+    }); // Select specific fields
 
     if (!employees.length) {
       return res.status(404).json({ message: "No employees found for this company." });

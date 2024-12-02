@@ -4,8 +4,8 @@ const User = require("../models/userModel");
 const { sendNotification } = require("../utils/notification");
 
 const submitEod = async (req, res) => {
-  const {   workDescription, mediaFiles } = req.body;
-  const employeeId=req.user.id
+  const { eodTitle,workDescription, mediaFiles } = req.body;
+  const employeeId = req.user.id;
 
   try {
     // Find the user
@@ -17,9 +17,23 @@ const submitEod = async (req, res) => {
       return res.status(400).json({ message: "EOD submissions are only allowed for employees" });
     }
 
-    // Update streak logic for employees
+    // Check if an EOD already exists for today
     const today = new Date();
-    const lastEodDate = user.employeeDetails.lastEodDate ? new Date(user.employeeDetails.lastEodDate) : null;
+    today.setHours(0, 0, 0, 0); // Reset time to the start of the day
+
+    const existingEod = await EodEntry.findOne({
+      employeeId,
+      submissionDate: { $gte: today },
+    });
+
+    if (existingEod) {
+      return res.status(400).json({ message: "You have already submitted an EOD today." , existingEod});
+    }
+
+    // Update streak logic for employees
+    const lastEodDate = user.employeeDetails.lastEodDate
+      ? new Date(user.employeeDetails.lastEodDate)
+      : null;
     const differenceInDays = lastEodDate ? (today - lastEodDate) / (1000 * 60 * 60 * 24) : null;
 
     if (differenceInDays !== null && differenceInDays <= 1) {
@@ -38,12 +52,13 @@ const submitEod = async (req, res) => {
     // Update lastEodDate
     user.employeeDetails.lastEodDate = today;
     await user.save();
-
     // Create a new EOD entry
     const eod = new EodEntry({
       employeeId,
+      eodTitle,
       workDescription,
       mediaFiles,
+      submissionDate: new Date(),
     });
     await eod.save();
 
@@ -57,12 +72,14 @@ const submitEod = async (req, res) => {
     res.status(201).json({
       message: "EOD submitted successfully",
       eod,
+      eodTitle,
       streakCount: user.employeeDetails.streakCount,
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 
 // Update EOD
@@ -111,6 +128,50 @@ const updateEod = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+const updateEodFeedbackAndStatus = async (req, res) => {
+  const { eodId } = req.params;
+  const { feedback, status } = req.body;
+
+  try {
+    // Validate status input
+    if (status && !["Pending", "Reviewed", "Approved", "NotApproved"].includes(status)) {
+      return res.status(400).json({ message: "Invalid status value" });
+    }
+
+    // Find the EOD entry
+    const eod = await EodEntry.findById(eodId);
+    if (!eod) {
+      return res.status(404).json({ message: "EOD entry not found" });
+    }
+
+    // Find the associated employee
+    const employee = await User.findById(eod.employeeId);
+    if (!employee) {
+      return res.status(404).json({ message: "Employee not found" });
+    }
+
+    // Update feedback and status
+    if (feedback) eod.feedback = feedback;
+    if (status) eod.status = status;
+
+    // Save the updated EOD entry
+    const updatedEod = await eod.save();
+
+    // Send notification to the employee
+    const notificationMessage = `Your EOD titled "${eod.eodTitle}" has been updated to status "${status}" with feedback: "${feedback || "No feedback provided"}".`;
+    await sendNotification(employee._id, notificationMessage, {
+      eodId: eod._id,
+      status,
+    });
+
+    res.status(200).json({
+      message: "EOD feedback and status updated successfully",
+      eod: updatedEod,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 
 const getEodsForCompany = async (req, res) => {
@@ -130,5 +191,15 @@ const getEodsForEmployee = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+const getEodsForUser = async (req, res) => {
+  try {
+    const eods = await EodEntry.find({ employeeId: req.user.id });
+    res.json(eods);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
-module.exports = { submitEod, getEodsForCompany, getEodsForEmployee , updateEod };
+module.exports = { submitEod, getEodsForCompany, getEodsForEmployee , updateEod , getEodsForUser
+  ,updateEodFeedbackAndStatus
+ };

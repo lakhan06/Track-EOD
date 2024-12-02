@@ -4,9 +4,9 @@ const auth = require("../middlewares/auth");
 const router = express.Router();
 
 // Fetch notifications for a user
-router.get("/:userId", auth(["company", "admin"]), getNotificationsForUser);
+router.get("/", auth(["company", "employee"]), getNotificationsForUser);
 
 // Mark a notification as read
-router.patch("/read/:notificationId", auth(["company", "admin"]), markNotificationAsRead);
+router.patch("/read/:notificationId", auth(["company", "admin","employee"]), markNotificationAsRead);
 
 module.exports = router;

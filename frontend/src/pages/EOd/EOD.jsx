@@ -5,6 +5,7 @@ import "./EOD.css";
 
 const AddEod = () => {
   const [form, setForm] = useState({
+    eodTitle: "",
     workDescription: "",
     mediaFiles: [], // URLs of uploaded files
   });
@@ -45,18 +46,18 @@ const AddEod = () => {
       setError(null);
       setSuccess(null);
 
-     
-
       const response = await submitEod({
+        eodTitle: form.eodTitle,
         workDescription: form.workDescription,
         mediaFiles: form.mediaFiles, // URLs of uploaded files
       });
 
       setSuccess("EOD submitted successfully!");
-      setForm({ workDescription: "", mediaFiles: [] });
+      setForm({ eodTitle: "", workDescription: "", mediaFiles: [] });
       setMediaFiles([]);
     } catch (err) {
-      setError(err.response?.data?.message || "EOD submission failed. Please try again.");
+      console.error("EOD submission error:", err.response);
+      setError(err?.message || "EOD submission failed. Please try again.");
     }
   };
 
@@ -70,6 +71,21 @@ const AddEod = () => {
     <div className="add-eod-container">
       <h2>Submit EOD</h2>
       <form className="add-eod-form" onSubmit={handleSubmit}>
+        {/* EOD Title */}
+        <div className="form-group">
+          <label>EOD Title</label>
+          <input
+            type="text"
+            className="form-input"
+            placeholder="Enter EOD title"
+            value={form.eodTitle}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, eodTitle: e.target.value }))
+            }
+            required
+          />
+        </div>
+
         {/* Work Description */}
         <div className="form-group">
           <label>Work Description</label>

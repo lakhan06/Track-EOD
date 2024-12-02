@@ -46,15 +46,19 @@ const getTasksForCompany = async (req, res) => {
   }
 };
 const getTasksForEmployee = async (req, res) => {
-  const { employeeId } = req.params;
-
   try {
-    const tasks = await Task.find({ assignees: employeeId });
+    const employeeId = req.user.id; // Correctly extract employee ID from req.user
+
+    // Use $in to match if employeeId exists in the assignees array
+    const tasks = await Task.find({ assignees: { $in: [employeeId] } });
+
     res.status(200).json(tasks);
   } catch (err) {
+    console.error("Error fetching tasks:", err.message);
     res.status(500).json({ error: err.message });
   }
 };
+
 
 const updateTask = async (req, res) => {
   const { taskId } = req.params;

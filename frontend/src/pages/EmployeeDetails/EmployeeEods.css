@@ -1,0 +1,62 @@
+.employee-eods-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .eods-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .eod-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: #f9f9f9;
+  }
+  
+  .eod-details-button {
+    background: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .eod-details-button:hover {
+    background: #0056b3;
+  }
+  
+  .eod-update-section {
+    margin-top: 20px;
+  }
+  
+  .eod-update-button {
+    background: #28a745;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .eod-update-button:hover {
+    background: #218838;
+  }
+  
+  .eod-modal-content textarea {
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .eod-modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  

@@ -16,7 +16,7 @@ router.post("/create", auth(["company", "admin"]), createTask);
 router.get("/company/:companyId", auth(["company", "admin"]), getTasksForCompany);
 
 // Get tasks assigned to a specific employee
-router.get("/employee/:employeeId", auth(["employee", "admin", "company"]), getTasksForEmployee);
+router.get("/employee", auth(["employee", "admin", "company"]), getTasksForEmployee);
 
 // Update task status
 router.patch("/:taskId", auth(["employee", "company", "admin"]), updateTask);

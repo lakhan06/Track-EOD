@@ -24,7 +24,9 @@ const cors = require("cors");
 app.use(
   cors({
     origin: "http://localhost:3000", // Replace with your frontend URL
-    methods: ["GET", "POST", "PATCH", "DELETE"], // Allowed HTTP methods
+    methods: ["GET", "POST", "PATCH", "DELETE"
+      ,"PUT"
+    ], // Allowed HTTP methods
     credentials: true, // Allow cookies if needed
   })
 );
@@ -36,7 +38,7 @@ app.use("/api/user", require("./routes/UserRoutes"));
 app.use("/api/eod", require("./routes/EodRoutes"));
 app.use("/api/reward", require("./routes/rewardRoutes"));
 app.use("/api/task", require("./routes/taskRoutes"));
-app.use("/api/notification", require("./routes/notificationRoutes"));
+app.use("/api/notifications", require("./routes/notificationRoutes"));
 app.use("/api/leaderboard", require("./routes/leaderBoardRoutes"));
 app.use("/api/companies", require("./routes/companyRoutes"));
 
