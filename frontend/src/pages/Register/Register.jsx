@@ -241,13 +241,13 @@ const Register = () => {
           </button>
         </form>
       </div>
-      {/* <div className="register-right">
+      <div className="register-right">
         <img
           src="/images/Register.webp" // Replace with your image URL
           alt="Register Illustration"
           className="register-image"
         />
-      </div> */}
+      </div>
     </div>
   );
 };
