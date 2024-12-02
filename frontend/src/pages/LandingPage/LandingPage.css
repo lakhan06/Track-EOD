@@ -34,13 +34,17 @@ body {
   }
   
   .hero-content h1 {
-    width: fit-content;
+    width: 80vw;
+    text-align: center;
     color: #27ae60;
     font-size: 3rem;
     margin-bottom: 1rem;
+
   }
   
   .hero-content p {
+    width: 80vw;
+    text-align: center;
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
   }
