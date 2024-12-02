@@ -80,7 +80,7 @@ const EmployeeDetails = () => {
                     : "N/A"}
                 </td>
                 <td>
-                  <Link to={`/company/employeeEods/${employee._id}`}>
+                  <Link to={`company/employeeEods/${employee._id}`}>
                     <button className="view-eods-button">View EODs</button>
                   </Link>
                 </td>
