@@ -14,6 +14,7 @@ const UserEods = () => {
   // Filter state
   const [selectedMonth, setSelectedMonth] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   useEffect(() => {
     const fetchEods = async () => {
@@ -43,10 +44,13 @@ const UserEods = () => {
       const matchesYear = selectedYear
         ? submissionDate.getFullYear() === parseInt(selectedYear)
         : true;
-      return matchesMonth && matchesYear;
+      const matchesStatus = selectedStatus
+        ? eod.status === selectedStatus
+        : true;
+      return matchesMonth && matchesYear && matchesStatus;
     });
     setFilteredEods(filtered);
-  }, [selectedMonth, selectedYear, eods]);
+  }, [selectedMonth, selectedYear, selectedStatus, eods]);
 
   const handleMoreDetails = (eod) => {
     setSelectedEod(eod);
@@ -99,6 +103,21 @@ const UserEods = () => {
                   {year}
                 </option>
               ))}
+            </select>
+          </label>
+
+          <label className="filter-label">
+            Select Status:
+            <select
+              className="filter-select"
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+            >
+              <option value="">All </option>
+              <option value="Pending">Pending</option>
+              <option value="Reviewed">Reviewed</option>
+              <option value="Approved">Approved</option>
+              <option value="NotApproved">Not Approved</option>
             </select>
           </label>
         </div>
@@ -156,7 +175,9 @@ const UserEods = () => {
                 <ul>
                   {selectedEod.mediaFiles.map((url, index) => (
                     <li key={index}>
-                      {url.endsWith(".mp4") || url.endsWith(".webm") || url.endsWith(".ogg") ? (
+                      {url.endsWith(".mp4") ||
+                      url.endsWith(".webm") ||
+                      url.endsWith(".ogg") ? (
                         <video controls>
                           <source src={url} type="video/mp4" />
                           Your browser does not support the video tag.
