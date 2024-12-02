@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <nav className="custom-navbar">
       <div className="navbar-content">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/?view=landing">
           Track EOD
         </Link>
         <div className="navbar-links">
@@ -46,7 +46,7 @@ const Navbar = () => {
                 </Link>
               </li> */}
               <li className="nav-item">
-                <Link className="nav-link notificationbutton" to="/notifications">
+                <Link className="nav-link notificationbutton" to="notifications">
                   Notifications{" "}
                   {unreadCount > 0 && (
                     <span className="notification-badge">{unreadCount}</span>
@@ -54,7 +54,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/profile">
+                <Link className="nav-link" to="profile">
                   Profile
                 </Link>
               </li>
@@ -64,10 +64,25 @@ const Navbar = () => {
                 </button>
               </li>
             </ul>
-          ) : (
-            <Link className="login-btn" to="/login">
-              Login
+          ) : (<ul>
+
+            <Link className="nav-link" to="/about"><li>
+
+              About
+            </li>
             </Link>
+            <Link className="nav-link" to="/Price"><li>
+
+              Price
+            </li>
+            </Link>
+            <Link className="login-btn" to="/login"><li>
+
+              Login
+            </li>
+            </Link>
+            
+          </ul>
           )}
         </div>
       </div>

@@ -1,14 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/Authcontext";
 import { login } from "../../services/api";
 import "./Login.css";
 
 const Login = () => {
-  const { login: authenticateUser } = useContext(AuthContext); // Use AuthContext
+  const { login: authenticateUser, user } = useContext(AuthContext); // Use AuthContext
   const [form, setForm] = useState({ email: "", password: "" }); // Form state
   const [error, setError] = useState(null); // Error state
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect to the dashboard if already logged in
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,8 +62,8 @@ const Login = () => {
             Login
           </button>
         </form>
-        <div  className="register-link">
-          Don't have an account? <Link to={'/register'}><span>Register</span></Link>
+        <div className="register-link">
+          Don't have an account? <Link to="/register"><span>Register</span></Link>
         </div>
       </div>
 

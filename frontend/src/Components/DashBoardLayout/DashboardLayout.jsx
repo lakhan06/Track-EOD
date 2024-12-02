@@ -38,28 +38,28 @@ const DashboardLayout = () => {
           {user.role === "company" ? (
             <>
               <li>
-                <Link to="/tasks">Create Tasks</Link>
+                <Link to="tasks">Create Tasks</Link>
               </li>
               <li>
-                <Link to="/employeeDetails">See Employee Deatils</Link>
+                <Link to="employeeDetails">See Employee Deatils</Link>
               </li>
               <li>
-                <Link to="/">See Leaderboard</Link>
+                <Link to="/dashboard">See Leaderboard</Link>
               </li>
             </>
           ) : (
             <>
               <li>
-                <Link to="/createEod">Add EOD</Link>
+                <Link to="createEod">Add EOD</Link>
               </li>
               <li>
-                <Link to="/employee/eods">See Your Eods</Link>
+                <Link to="employee/eods">See Your Eods</Link>
               </li>
               <li>
-                <Link to="/">See Leaderboard</Link>
+                <Link to="/dashboard">See Leaderboard</Link>
               </li>
               <li>
-                <Link to="/Employeetasks">View Tasks</Link>
+                <Link to="Employeetasks">View Tasks</Link>
               </li>
             </>
           )}

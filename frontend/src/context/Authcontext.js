@@ -4,29 +4,38 @@ import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null); // User state
+  const [loading, setLoading] = useState(true); // Loading state for auth operations
 
   const navigate = useNavigate();
 
+  // Load user data from localStorage on initial render
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) setUser(storedUser);
-    setLoading(false);
+    const loadUser = () => {
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      if (storedUser) {
+        setUser(storedUser);
+      }
+      setLoading(false); // Mark loading as complete
+    };
+
+    loadUser();
   }, []);
 
+  // Handle user login
   const login = (userData, token) => {
-    localStorage.setItem("user", JSON.stringify(userData));
-    localStorage.setItem("token", token);
-    setUser(userData);
-    navigate("/");
+    localStorage.setItem("user", JSON.stringify(userData)); // Store user data
+    localStorage.setItem("token", token); // Store token
+    setUser(userData); // Update user state
+    navigate("/"); // Redirect to dashboard
   };
 
+  // Handle user logout
   const logout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    setUser(null);
-    navigate("/login");
+    localStorage.removeItem("user"); // Remove user data
+    localStorage.removeItem("token"); // Remove token
+    setUser(null); // Clear user state
+    navigate("/login"); // Redirect to login page
   };
 
   return (
