@@ -41,5 +41,15 @@ app.use("/api/leaderboard", require("./routes/leaderBoardRoutes"));
 app.use("/api/companies", require("./routes/companyRoutes"));
 
 
+//test Route
+
+
+app.get("/" , (req , res)=>{
+  return res.status(200).json({
+    success:true,
+    message:"You landed on the test route !"
+  })
+})
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
