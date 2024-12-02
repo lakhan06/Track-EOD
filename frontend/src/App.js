@@ -23,7 +23,7 @@ const AppRoutes = () => {
   const location = useLocation();
 
   const isLandingPage = location.pathname === "/" && location.search.includes("view=landing");
-  const isDashboardPage = location.pathname === "/dashboard" 
+  const isDashboardPage = location.pathname.includes("/dashboard");
 
   return (
     <>
