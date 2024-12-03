@@ -123,8 +123,8 @@
   }
 
   .login-header {
-    font-size: 1.5rem;
-    text-align: center;
+    font-size: 35px;
+    /* text-align: center; */
   }
 
   .submit-button {
@@ -134,7 +134,7 @@
 
 @media (max-width: 480px) {
   .login-header {
-    font-size: 1.3rem;
+    font-size: 35px;
   }
 
   .form-label {

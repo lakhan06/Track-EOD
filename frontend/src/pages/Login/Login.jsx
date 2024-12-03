@@ -33,7 +33,7 @@ const Login = () => {
     <div className="login-container">
       {/* Left side: Login form */}
       <div className="login-form-container">
-        <h2 className="login-header">LOGIN</h2>
+        <h2 className="login-header">Login</h2>
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="form-label">Email</label>
