@@ -2,9 +2,11 @@ import axios from "axios";
 
 // Create Axios instance
 const API = axios.create({
-  baseURL: "https://track-eod-backend.codewithabhinav.online/api", // Replace with your backend URL
-  // baseURL: "http://localhost:5000/api", // Replace with your backend URL
+  // baseURL: "https://track-eod-backend.codewithabhinav.online/api", // Replace with your backend URL
+  baseURL: "http://localhost:5000/api", // Replace with your backend URL
 });
+
+
 
 // Request Interceptor: Add token to headers
 API.interceptors.request.use(
@@ -62,6 +64,98 @@ export const createTask = (data) => API.post("/task/create", data);
 export const updateTask = (taskId, data) => API.patch(`/task/${taskId}`, data);
 export const deleteTask = (taskId) => API.delete(`/task/${taskId}`);
 
+// Project APIs
+export const fetchProjectsForCompany = async (companyId) => {
+  try {
+    const { data } = await API.get(`/projects/company/${companyId}`);
+    return data || [];
+  } catch (error) {
+    console.error(`Error fetching projects for company ${companyId}:`, error);
+    throw error;
+  }
+};
+
+export const createProject = async (data) => {
+  try {
+    const { data: responseData } = await API.post("/projects", data);
+    return responseData || {};
+  } catch (error) {
+    console.error("Error creating project:", error);
+    throw error;
+  }
+};
+
+export const createProjectWithTasksAndWorks = async (data) => {
+  try {
+    const { data: responseData } = await API.post("/project/projects-with-tasks", data);
+    return responseData || {};
+  } catch (error) {
+    console.error("Error creating project with tasks and works:", error);
+    throw error;
+  }
+};
+
+export const updateProject = async (projectId, data) => {
+  try {
+    const { data: responseData } = await API.put(`/projects/${projectId}`, data);
+    return responseData || {};
+  } catch (error) {
+    console.error(`Error updating project ${projectId}:`, error);
+    throw error;
+  }
+};
+
+export const deleteProject = async (projectId) => {
+  try {
+    await API.delete(`/projects/${projectId}`);
+    return { success: true };
+  } catch (error) {
+    console.error(`Error deleting project ${projectId}:`, error);
+    throw error;
+  }
+};
+
+// Work APIs
+export const fetchWorksForTask = async (taskId) => {
+  try {
+    const { data } = await API.get(`/works/task/${taskId}`);
+    return data || [];
+  } catch (error) {
+    console.error(`Error fetching works for task ${taskId}:`, error);
+    throw error;
+  }
+};
+
+export const createWorkForTask = async (taskId, workData) => {
+  try {
+    const { data: responseData } = await API.post(`/works/task/${taskId}`, workData);
+    return responseData || {};
+  } catch (error) {
+    console.error(`Error creating work for task ${taskId}:`, error);
+    throw error;
+  }
+};
+
+export const updateWork = async (workId, data) => {
+  try {
+    const { data: responseData } = await API.put(`/works/${workId}`, data);
+    return responseData || {};
+  } catch (error) {
+    console.error(`Error updating work ${workId}:`, error);
+    throw error;
+  }
+};
+
+export const deleteWork = async (workId) => {
+  try {
+    await API.delete(`/works/${workId}`);
+    return { success: true };
+  } catch (error) {
+    console.error(`Error deleting work ${workId}:`, error);
+    throw error;
+  }
+};
+
 // EOD APIs
 export const submitEod = (data) => API.post("/eod/submit", data);
 export const fetchEodsForCompany = async (companyId) => {
@@ -73,6 +167,7 @@ export const fetchEodsForCompany = async (companyId) => {
     throw error;
   }
 };
+
 export const fetchEodsForEmployee = async (employeeId) => {
   try {
     const { data } = await API.get(`/eod/employee/${employeeId}`);
@@ -82,6 +177,7 @@ export const fetchEodsForEmployee = async (employeeId) => {
     throw error;
   }
 };
+
 export const fetchEodsForUser = async () => {
   try {
     const { data } = await API.get(`/eod/employee`);
@@ -91,6 +187,7 @@ export const fetchEodsForUser = async () => {
     throw error;
   }
 };
+
 export const updateEod = (eodId, data) => API.patch(`/eod/${eodId}`, data);
 
 // New API for updating EOD feedback and status
@@ -114,6 +211,7 @@ export const fetchNotifications = async () => {
     throw error;
   }
 };
+
 export const markNotificationRead = (notificationId) =>
   API.patch(`/notifications/read/${notificationId}`);
 
@@ -127,6 +225,7 @@ export const fetchCompanies = async () => {
     throw error;
   }
 };
+
 export const fetchEmployeesForCompany = () =>
   API.get(`/companies/employees`);
 

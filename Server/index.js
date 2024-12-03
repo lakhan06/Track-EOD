@@ -38,6 +38,7 @@ app.use("/api/user", require("./routes/UserRoutes"));
 app.use("/api/eod", require("./routes/EodRoutes"));
 app.use("/api/reward", require("./routes/rewardRoutes"));
 app.use("/api/task", require("./routes/taskRoutes"));
+app.use("/api/project", require("./routes/ProjectTaskWOrkRoute"));
 app.use("/api/notifications", require("./routes/notificationRoutes"));
 app.use("/api/leaderboard", require("./routes/leaderBoardRoutes"));
 app.use("/api/companies", require("./routes/companyRoutes"));

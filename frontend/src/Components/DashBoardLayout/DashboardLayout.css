@@ -42,6 +42,7 @@
 .dashboard-main {
   flex: 1;
   padding: 20px;
+  /* overflow: hidden; */
 }
 
 /* Icon-Only View for Small Screens */

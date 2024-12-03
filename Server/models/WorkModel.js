@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
-const TaskSchema = new mongoose.Schema({
+const WorkSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   companyId: { type: mongoose.Schema.Types.ObjectId, ref: "Company", required: true },
-  works: [{ type: mongoose.Schema.Types.ObjectId, ref: "Work" }],
+  assignees: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   deadline: { type: Date },
   status: { type: String, enum: ["Not Started", "In Progress", "Completed"], default: "Not Started" },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Task", TaskSchema);
+module.exports = mongoose.model("Work", WorkSchema);

@@ -44,6 +44,12 @@ const DashboardLayout = () => {
                 </Link>
               </li>
               <li>
+                <Link to="createProject">
+                  <FaPlusCircle />
+                  <span>Create Project</span>
+                </Link>
+              </li>
+              <li>
                 <Link to="employeeDetails">
                   <FaUsers />
                   <span>Employee Details</span>
@@ -64,6 +70,7 @@ const DashboardLayout = () => {
                   <span>Add EOD</span>
                 </Link>
               </li>
+             
               <li>
                 <Link to="employee/eods">
                   <FaTasks />

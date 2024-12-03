@@ -17,6 +17,7 @@ import EmployeeEods from "./pages/EmployeeDetails/EmployeeEodForCOmpany";
 import ProtectedRoute from "./Components/Proctected ROutes/ProctedRoute";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import Footer from "./Components/Footer/Footer";
+import ProjectForm from "./pages/ProjectWOrkTask/ProjectWorkTask";
 
 const AppRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -47,6 +48,7 @@ const AppRoutes = () => {
           <Route path="Employeetasks" element={<EmployeeTasks />} />
           <Route path="employee/eods" element={<UserEods />} />
           <Route path="employeeDetails" element={<EmployeeDetails />} />
+          <Route path="createProject" element={<ProjectForm />} />
           <Route path="company/employeeEods/:employeeId" element={<EmployeeEods />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="createEod" element={<AddEod />} />
