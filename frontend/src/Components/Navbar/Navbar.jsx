@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/Authcontext";
 import { fetchNotifications } from "../../services/api"; // Import the API function
+import { GiHamburgerMenu } from "react-icons/gi"; // Import the hamburger icon
 import "./Navbar.css";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const getUnreadNotifications = async () => {
@@ -26,27 +28,27 @@ const Navbar = () => {
     }
   }, [user]);
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="custom-navbar">
       <div className="navbar-content">
         <Link className="navbar-brand" to="/?view=landing">
           Track EOD
         </Link>
-        <div className="navbar-links">
+        <button className="hamburger" onClick={toggleMenu}>
+          <GiHamburgerMenu size={24} color="white" />
+        </button>
+        <div className={`navbar-links ${isMenuOpen ? "show" : ""}`}>
           {user ? (
             <ul className="navbar-nav">
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/tasks">
-                  Tasks
-                </Link>
-              </li> */}
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/eod">
-                  EOD
-                </Link>
-              </li> */}
               <li className="nav-item">
-                <Link className="nav-link notificationbutton" to="/dashboard/notifications">
+                <Link
+                  className="nav-link notificationbutton"
+                  to="/dashboard/notifications"
+                >
                   Notifications{" "}
                   {unreadCount > 0 && (
                     <span className="notification-badge">{unreadCount}</span>
@@ -69,30 +71,17 @@ const Navbar = () => {
                 </button>
               </li>
             </ul>
-          ) : (<ul>
-
-            {/* <Link className="nav-link" to="/about"><li>
-
-              About
-            </li>
-            </Link>
-            <Link className="nav-link" to="/Price"><li>
-
-              Price
-            </li>
-            </Link> */}
-            <li className="nav-item">
+          ) : (
+            <ul>
+              <li className="nav-item">
                 <Link className="nav-link" to="/dashboard">
                   Dashboard
                 </Link>
               </li>
-            <Link className="login-btn" to="/login"><li>
-
-              Login
-            </li>
-            </Link>
-            
-          </ul>
+              <Link className="login-btn" to="/login">
+                <li>Login</li>
+              </Link>
+            </ul>
           )}
         </div>
       </div>
