@@ -87,8 +87,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    /* color: white; */
   }
-  .filter-container{
-    background-color: #2c3e50;
-  }
+  

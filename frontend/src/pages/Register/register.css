@@ -146,4 +146,7 @@
     max-width: 80%;
     margin: 20px auto;
   }
+  .register-right{
+    display: none;
+  }
 }

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { fetchUserData } from "../../services/api"; // Import the API function
+import { fetchUserData } from "../../services/api";
+import { FaTasks, FaUsers, FaChartLine, FaPlusCircle } from "react-icons/fa"; // Import icons
 import "./DashboardLayout.css";
 
 const DashboardLayout = () => {
-  const [user, setUser] = useState(null); // State to store user data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         setLoading(true);
         setError(null);
-        const { user: fetchedUser } = await fetchUserData(); // Fetch user data
+        const { user: fetchedUser } = await fetchUserData();
         setUser(fetchedUser);
       } catch (err) {
         console.error("Error fetching user data:", err.message);
@@ -33,39 +34,56 @@ const DashboardLayout = () => {
     <div className="dashboard-layout">
       {/* Sidebar */}
       <aside className="dashboard-sidebar">
-        <Link to={'/dashboard'}><h3 className="sidebar-title">Dashboard</h3></Link>
         <ul className="sidebar-links">
           {user.role === "company" ? (
             <>
               <li>
-                <Link to="tasks">Create Tasks</Link>
+                <Link to="tasks">
+                  <FaTasks />
+                  <span>Create Tasks</span>
+                </Link>
               </li>
               <li>
-                <Link to="employeeDetails">See Employee Deatils</Link>
+                <Link to="employeeDetails">
+                  <FaUsers />
+                  <span>Employee Details</span>
+                </Link>
               </li>
               <li>
-                <Link to="/dashboard">See Leaderboard</Link>
+                <Link to="/dashboard">
+                  <FaChartLine />
+                  <span>Leaderboard</span>
+                </Link>
               </li>
             </>
           ) : (
             <>
               <li>
-                <Link to="createEod">Add EOD</Link>
+                <Link to="createEod">
+                  <FaPlusCircle />
+                  <span>Add EOD</span>
+                </Link>
               </li>
               <li>
-                <Link to="employee/eods">See Your Eods</Link>
+                <Link to="employee/eods">
+                  <FaTasks />
+                  <span>View EODs</span>
+                </Link>
               </li>
               <li>
-                <Link to="/dashboard">See Leaderboard</Link>
+                <Link to="/dashboard">
+                  <FaChartLine />
+                  <span>Leaderboard</span>
+                </Link>
               </li>
               <li>
-                <Link to="Employeetasks">View Tasks</Link>
+                <Link to="Employeetasks">
+                  <FaTasks />
+                  <span>View Tasks</span>
+                </Link>
               </li>
             </>
           )}
-          {/* <li>
-            <Link to="/profile">My Profile</Link>
-          </li> */}
         </ul>
       </aside>
 
