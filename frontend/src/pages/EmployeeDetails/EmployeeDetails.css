@@ -1,109 +1,140 @@
 .employees-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .employees-loading,
-  .employees-error {
-    text-align: center;
-    margin: 20px;
-    font-size: 1.2rem;
-  }
-  
-  .employees-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-  }
-  
-  .employees-table th,
-  .employees-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .employees-table th {
-    background-color: #f4f4f4;
-  }
-  
-  .employees-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .employees-table tr:hover {
-    background-color: #f1f1f1;
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.employees-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.employees-loading,
+.employees-error {
+  text-align: center;
+  margin: 20px;
+  font-size: 1.2rem;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  text-align: center; /* Center the search input */
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 400px; /* Restrict width on larger screens */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.employees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow-x: auto; /* Enable horizontal scrolling for small screens */
+}
+
+.employees-table th,
+.employees-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.employees-table th {
+  background-color: #f4f4f4;
+  font-size: 1rem;
+}
+
+.employees-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.employees-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.view-eods-button {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-eods-button:hover {
+  background-color: #0056b3;
+}
+
+.employees-empty {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .employees-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .employees-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .employees-table th, .employees-table td {
-    border: 1px solid #ddd;
     padding: 10px;
-    text-align: left;
-  }
-  
-  .employees-table th {
-    background-color: #f4f4f4;
-  }
-  
-  .view-eods-button {
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .view-eods-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .employee-eods-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .employee-eod-item {
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background: #f9f9f9;
-  }
-  
-  .eod-media ul {
-    list-style: none;
-    padding: 0;
   }
 
-  .search-container {
-    margin-bottom: 20px;
-    /* text-align: right; */
+  .employees-title {
+    font-size: 1.5rem;
   }
-  
+
   .search-input {
+    font-size: 0.9rem;
     padding: 8px;
-    font-size: 14px;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
   }
-  
-  .search-input:focus {
-    border-color: #007bff;
-    outline: none;
+
+  .employees-table {
+    display: block; /* Display the table as a block for better scrolling */
+    overflow-x: auto; /* Allow horizontal scrolling */
   }
-  
-  
+
+  .employees-table th,
+  .employees-table td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .view-eods-button {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .employees-title {
+    font-size: 1.3rem;
+  }
+
+  .search-input {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  .employees-table th,
+  .employees-table td {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
+
+  .view-eods-button {
+    font-size: 0.7rem;
+    padding: 4px 6px;
+  }
+}
