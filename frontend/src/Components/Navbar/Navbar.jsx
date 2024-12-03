@@ -72,15 +72,17 @@ const Navbar = () => {
               </li>
             </ul>
           ) : (
-            <ul>
+            <ul className="navbar-nav">
               <li className="nav-item">
                 <Link className="nav-link" to="/dashboard">
                   Dashboard
                 </Link>
               </li>
-              <Link className="login-btn" to="/login">
-                <li>Login</li>
-              </Link>
+              <li><Link to="/login">
+              <button className="login-btn" onClick={logout}>
+                Login
+              </button>
+              </Link></li>
             </ul>
           )}
         </div>

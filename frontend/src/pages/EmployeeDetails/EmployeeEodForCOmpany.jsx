@@ -149,7 +149,7 @@ const EmployeeEods = () => {
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
             >
-              <option value="">All Statuses</option>
+              <option value="">All</option>
               <option value="Pending">Pending</option>
               <option value="Reviewed">Reviewed</option>
               <option value="Approved">Approved</option>
@@ -164,8 +164,8 @@ const EmployeeEods = () => {
           {filteredEods.map((eod) => (
             <li key={eod._id} className="eod-item">
               <h3 className="eod-title">{eod.eodTitle}</h3>
-              <p>
-                <strong>Status:</strong> {eod.status}
+              <p className={`eod-status ${eod.status.toLowerCase()}`}>
+                <strong>Status:</strong> <span className="status">{eod.status}</span>
               </p>
               <p>
                 <strong>Submitted on:</strong>{" "}
