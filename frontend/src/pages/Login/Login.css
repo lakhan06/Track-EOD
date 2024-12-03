@@ -110,6 +110,7 @@
   .login-container {
     flex-direction: column;
     padding: 20px;
+    height: fit-content;
   }
 
   .login-image-container {
