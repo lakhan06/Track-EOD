@@ -2,8 +2,8 @@ import axios from "axios";
 
 // Create Axios instance
 const API = axios.create({
-  // baseURL: "https://track-eod-backend.codewithabhinav.online/api", // Replace with your backend URL
-  baseURL: "http://localhost:5000/api", // Replace with your backend URL
+  baseURL: "https://track-eod-backend.codewithabhinav.online/api", // Replace with your backend URL
+  // baseURL: "http://localhost:5000/api", // Replace with your backend URL
 });
 
 // Request Interceptor: Add token to headers
