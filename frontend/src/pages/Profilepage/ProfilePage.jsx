@@ -44,35 +44,35 @@ const Profile = () => {
       <h3>Employee Details</h3>
       <div className="profile-row">
         <span>Company Name:</span>
-        <span>
+        <div>
           {user.employeeDetails?.companyId?.companyDetails?.name || "Not Assigned"}
-        </span>
+        </div>
       </div>
       <div className="profile-row">
         <span>Company Address:</span>
-        <span>
+        <div>
           {user.employeeDetails?.companyId?.companyDetails?.address || "Not Available"}
-        </span>
+        </div>
       </div>
       <div className="profile-row">
         <span>Company Username:</span>
-        <span>{user.employeeDetails?.companyId?.username || "Not Available"}</span>
+        <div>{user.employeeDetails?.companyId?.username || "Not Available"}</div>
       </div>
       <div className="profile-row">
         <span>Current Streak:</span>
-        <span>{user.employeeDetails?.streakCount || 0}</span>
+        <div>{user.employeeDetails?.streakCount || 0}</div>
       </div>
       <div className="profile-row">
         <span>Longest Streak:</span>
-        <span>{user.employeeDetails?.longestStreak || 0}</span>
+        <div>{user.employeeDetails?.longestStreak || 0}</div>
       </div>
       <div className="profile-row">
         <span>Last EOD Date:</span>
-        <span>
+        <div>
           {user.employeeDetails?.lastEodDate
             ? new Date(user.employeeDetails.lastEodDate).toLocaleDateString()
             : "Not Available"}
-        </span>
+        </div>
       </div>
     </div>
   );
