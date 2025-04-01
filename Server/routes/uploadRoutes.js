@@ -29,7 +29,7 @@ router.post("/", upload.single("file"), (req, res) => {
     }
   
     // const fileUrl = `http://localhost:5000/uploads/${req.file.filename}`;
-    const fileUrl = `https://track-eod-backend.codewithabhinav.online/uploads/${req.file.filename}`;
+    const fileUrl = `https://track-eod-backend.codewithabhinav.in/uploads/${req.file.filename}`;
     res.status(200).json({ url: fileUrl });
   });
   
