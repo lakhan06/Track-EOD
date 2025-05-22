@@ -42,10 +42,10 @@ const registerUserOrCompany = async (req, res) => {
       }
     }
 
-    // Generate a token
-    const token = jwt.sign({ id: newUser.id, role: newUser.role }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
+    // // Generate a token
+    // const token = jwt.sign({ id: newUser.id, role: newUser.role }, process.env.JWT_SECRET, {
+    //   expiresIn: "1d",
+    // });
 
     // Return the response
     res.status(201).json({
@@ -57,7 +57,7 @@ const registerUserOrCompany = async (req, res) => {
         ...(role === "company" && { companyDetails: newUser.companyDetails }),
         ...(role === "employee" && { employeeDetails: newUser.employeeDetails }),
       },
-      token,
+      // token,
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

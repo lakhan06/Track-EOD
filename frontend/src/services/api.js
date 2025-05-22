@@ -18,6 +18,8 @@ API.interceptors.request.use(
     return req;
   },
   (error) => {
+      
+
     console.error("Request Error:", error.message);
     return Promise.reject(error);
   }
@@ -27,6 +29,14 @@ API.interceptors.request.use(
 API.interceptors.response.use(
   (response) => response,
   (error) => {
+    if (error.response && error.response.status === 401) {
+      // Remove token from localStorage
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      
+      // Optionally redirect to login page
+      window.location.href = '/login';
+    }
     const errorDetails = error.response?.data || {
       message: error.message || "Something went wrong",
     };
