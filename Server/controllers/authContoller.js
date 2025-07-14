@@ -64,10 +64,6 @@ const registerUserOrCompany = async (req, res) => {
   }
 };
 
-
-module.exports = { registerUserOrCompany };
-
-
 const loginUserOrCompany = async (req, res) => {
   const { email, password } = req.body;
   try {

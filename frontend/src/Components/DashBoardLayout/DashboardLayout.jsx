@@ -55,12 +55,12 @@ const DashboardLayout = () => {
                   <span>Employee Details</span>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/dashboard">
                   <FaChartLine />
                   <span>Leaderboard</span>
                 </Link>
-              </li>
+              </li> */}
             </>
           ) : (
             <>
@@ -77,12 +77,12 @@ const DashboardLayout = () => {
                   <span>View EODs</span>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/dashboard">
                   <FaChartLine />
                   <span>Leaderboard</span>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="Employeetasks">
                   <FaTasks />

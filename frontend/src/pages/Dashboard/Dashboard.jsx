@@ -74,7 +74,7 @@ const Dashboard = () => {
           )}
         </div>
 
-        <h3 className="dashboard-leaderboard-title">Top Performers</h3>
+        {/* <h3 className="dashboard-leaderboard-title">Top Performers</h3>
         <ul className="leaderboard-list">
           {leaderboard.map((employee, index) => (
             <li key={index} className="leaderboard-item">
@@ -84,7 +84,7 @@ const Dashboard = () => {
               <span>{employee.totalEods} EODs</span>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </main>
     </div>
   );
